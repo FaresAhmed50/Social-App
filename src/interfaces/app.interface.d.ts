@@ -1,6 +1,6 @@
 import express, {Application} from "express";
 
-export type BootstrapArgs = {
+export interface BootstrapArgs  {
     app: Application;
     express: typeof express;
-};
+}

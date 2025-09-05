@@ -1,9 +1,18 @@
-import {z} from "zod/v4";
+import * as z from "zod";
 
+export const signUpSchema  = {
+    body: z.object({
+        name: z.string().min(3).max(10),
+        email: z.email(),
+        password: z.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
+        confirmPassword: z.string()
+    }).required().refine((data) => {
+        const {password, confirmPassword} = data;
 
-const signUpSchema = z.object({
-    name : z.string().min(3).max(10),
-    email : z.email(),
-    password : z.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
-    confirmPassword : z.string()
-}).required();
+        return password === confirmPassword;
+
+    },{
+        error: "Password and confirm password must match",
+        path: ["confirmPassword"]
+    })
+}

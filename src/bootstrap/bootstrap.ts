@@ -1,4 +1,4 @@
-import {BootstrapArgs} from "../interfaces/app.interface";
+import {BootstrapArgs} from "../interfaces/app.interface.js";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";

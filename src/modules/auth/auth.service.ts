@@ -1,5 +1,5 @@
 import { Response , Request, NextFunction} from "express";
-import {SignUp} from "../../interfaces/auth.interface";
+import {SignUp} from "../../interfaces/auth.interface.js";
 
 
 class authService  {
