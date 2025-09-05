@@ -5,7 +5,8 @@ export const signUpSchema  = {
         name: z.string().min(3).max(10),
         email: z.email(),
         password: z.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
-        confirmPassword: z.string()
+        confirmPassword: z.string(),
+        gender : z.string()
     }).required().refine((data) => {
         const {password, confirmPassword} = data;
 
@@ -16,3 +17,6 @@ export const signUpSchema  = {
         path: ["confirmPassword"]
     })
 }
+
+
+export type signUpSchemaType = z.infer<typeof signUpSchema.body>;

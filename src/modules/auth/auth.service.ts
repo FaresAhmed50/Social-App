@@ -1,5 +1,5 @@
 import { Response , Request, NextFunction} from "express";
-import {SignUp} from "../../interfaces/auth.interface.js";
+import {signUpSchemaType} from "../../validators/auth.validator.js";
 
 
 class authService  {
@@ -7,7 +7,7 @@ class authService  {
 
     signUp = async (req: Request, res: Response, next: NextFunction) => {
 
-        const {  name , email , password , confirmPassword } : SignUp = req.body;
+        const {  name , email , password , confirmPassword , gender } : signUpSchemaType = req.body;
 
     }
 

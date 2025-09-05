@@ -5,6 +5,7 @@ import rateLimit from "express-rate-limit";
 import {Request , Response , NextFunction} from "express";
 import {ErrorHandler, globalErrorHandler} from "../middlewares/errorHandler.js";
 import authRouter from "../modules/auth/auth.controller.js";
+import dbConnection from "../dbConnection/dbConnection.js";
 
 const bootstrap = ({app , express} : BootstrapArgs ) => {
 
@@ -19,6 +20,8 @@ const bootstrap = ({app , express} : BootstrapArgs ) => {
     app.use(helmet());
     app.use(limiter);
     app.use(express.json());
+
+    dbConnection();
 
 
     app.get("/", (req : Request , res : Response) => {
