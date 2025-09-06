@@ -1,19 +1,10 @@
 import {Types} from 'mongoose';
 
 
-export enum GenderType {
-    male = 'male',
-    female = 'female',
-}
 
-export enum RoleType {
-    user = 'user',
-    admin = 'admin',
-}
 
 
 export interface UserModelInterface {
-    _id : Types.ObjectId;
     fName : string;
     lName : string;
     username ?: string;

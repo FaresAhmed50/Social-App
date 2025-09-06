@@ -5,7 +5,7 @@ import rateLimit from "express-rate-limit";
 import {Request , Response , NextFunction} from "express";
 import {ErrorHandler, globalErrorHandler} from "../middlewares/errorHandler.js";
 import authRouter from "../modules/auth/auth.controller.js";
-import dbConnection from "../dbConnection/dbConnection.js";
+import dbConnection from "../DB/dbConnection.js";
 
 const bootstrap = ({app , express} : BootstrapArgs ) => {
 

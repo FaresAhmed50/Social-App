@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import {GenderType, RoleType, UserModelInterface} from "../../interfaces/userModel.interface.js";
+import {UserModelInterface} from "../../../interfaces/userModel.interface.js";
+import {GenderType, RoleType} from "../../../interfaces/genaricTypes.interface.js";
 
 
 const userSchema = new mongoose.Schema<UserModelInterface>({
@@ -52,7 +53,7 @@ const userSchema = new mongoose.Schema<UserModelInterface>({
     toObject: {virtuals: true},
 });
 
-userSchema.virtual("userName").set(function (value) {
+userSchema.virtual("username").set(function (value) {
     const [fName, lName] = value.split(" ");
     this.set({fName, lName});
 }).get(function () {
