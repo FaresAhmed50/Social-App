@@ -4,6 +4,8 @@ import {HydratedDocument, Model} from "mongoose";
 import {UserModelInterface} from "../../interfaces/userModel.interface.js";
 import UserModel from "../../DB/models/user/user.model.js";
 import {UserRepository} from "../../DB/repositories/user.repository.js";
+import {ErrorHandler} from "../../middlewares/errorHandler.js";
+import {generateHash} from "../../utilits/Hashing/generateHash.js";
 
 
 
@@ -15,10 +17,18 @@ class authService  {
 
         const {  username , email , password , gender , role , age , phone , address } : signUpSchemaType = req.body;
 
+        const userExisits = this._userModel.findOne({email});
+
+        if(!userExisits){
+            throw new ErrorHandler(409 , "User already exists");
+        }
+
+        const hashedPassword = await generateHash(password , Number(process.env.SALT_ROUND) );
+
         const user : HydratedDocument<UserModelInterface> = await this._userModel.createOneUser({
             username,
             email,
-            password,
+            password : hashedPassword,
             phone,
             age,
             address,
