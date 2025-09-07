@@ -17,9 +17,9 @@ class authService  {
 
         const {  username , email , password , gender , role , age , phone , address } : signUpSchemaType = req.body;
 
-        const userExisits = this._userModel.findOne({email});
+        const userExists = this._userModel.findOne({email});
 
-        if(!userExisits){
+        if(!userExists){
             throw new ErrorHandler(409 , "User already exists");
         }
 
